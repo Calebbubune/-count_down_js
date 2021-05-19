@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Count Down</title>
+    <style>
+        body{
+            background-color: black;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="item">
+        <form action="">
+            <input type="text" id="taskName" placeholder="Enter Task Name">
+            <input type="text" id="time" placeholder="Enter time estimate: 00h 00mins">
+            <h2>Time Remaining</h2>
+            <h3> <span id="hours"> </span>  <span id="mins"> </span> <span id="secs"></span> </h3>
+        </form>
+    </div>
+
+    <script>
+
+        // get Element by id
+        function $(element){
+            return document.getElementById(element);
+        }
+
+        //variables 
+        let timeSpent = 0;
+        let timeToSpend = 3600; //seconds
+        const OneSecond = 1000;
+
+       var timer = window.setInterval( function(){
+            timeSpent++;
+            console.log(`Time spent: ${timeSpent}`)
+            console.log(`Time remaining: ${timeToSpend - timeSpent}`)
+            $('hours').innerHTML = `${Math.ceil((timeToSpend - timeSpent)/(3600))} hr`;
+            $('mins').innerHTML = `${Math.ceil((timeToSpend - timeSpent)/(60))} mins`;
+            $('secs').innerHTML = `${(timeToSpend - timeSpent)} s`;
+            if(timeSpent >= timeToSpend){
+                window.clearTimeout(timer)
+                console.log("done")
+            }
+        }, OneSecond )
+
+    </script>
+
+</body>
+</html>
